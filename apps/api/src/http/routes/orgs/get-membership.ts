@@ -13,7 +13,7 @@ export async function getUserMembership(app: FastifyInstance) {
       '/organization/:slug/membership',
       {
         schema: {
-          tags: ['Organizations'],
+          tags: ['orgs'],
           summary: 'Get user membership on organization',
           security: [{ bearerAuth: [] }],
           params: z.object({
