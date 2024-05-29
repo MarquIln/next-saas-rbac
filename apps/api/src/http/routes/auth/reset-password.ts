@@ -5,11 +5,11 @@ import z from 'zod'
 
 import { prisma } from '@/lib/prisma'
 
-import { UnathorizedError } from '../_errors/unathorized-error'
+import { UnauthorizedError } from '../_errors/unauthorized-error'
 
 export async function resetPassword(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
-    '/passowrd/reset',
+    '/password/reset',
     {
       schema: {
         tags: ['auth'],
@@ -31,7 +31,7 @@ export async function resetPassword(app: FastifyInstance) {
       })
 
       if (!tokenFromCode) {
-        throw new UnathorizedError('Wrong Code! try again')
+        throw new UnauthorizedError('Wrong Code! try again')
       }
 
       const passwordHash = await hash(password, 6)
