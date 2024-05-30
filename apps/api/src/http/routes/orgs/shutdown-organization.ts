@@ -30,13 +30,8 @@ export async function shutdownOrganization(app: FastifyInstance) {
       async (request, reply) => {
         const { slug } = request.params
         const userId = await request.getCurrentUserId()
-        console.log(userId)
         const { membership, organization } =
           await request.getUserMembership(slug)
-
-        console.log(membership.role)
-        console.log(organization.name)
-        console.log(slug)
 
         const authOrganization = organizationSchema.parse(organization)
 

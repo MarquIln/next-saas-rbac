@@ -23,7 +23,7 @@ export async function updateOrganization(app: FastifyInstance) {
           body: z.object({
             name: z.string(),
             domain: z.string().nullish(),
-            shouldAttachUserByDomain: z.boolean().optional(),
+            shouldAttachUsersByDomain: z.boolean().optional(),
           }),
           params: z.object({
             slug: z.string(),
@@ -39,7 +39,7 @@ export async function updateOrganization(app: FastifyInstance) {
         const { membership, organization } =
           await request.getUserMembership(slug)
 
-        const { name, domain, shouldAttachUserByDomain } = request.body
+        const { name, domain, shouldAttachUsersByDomain } = request.body
 
         const authOrganization = organizationSchema.parse(organization)
 
@@ -75,7 +75,7 @@ export async function updateOrganization(app: FastifyInstance) {
           data: {
             name,
             domain,
-            shouldAttachUserByDomain,
+            shouldAttachUsersByDomain,
           },
         })
 
